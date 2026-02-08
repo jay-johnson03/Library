@@ -1,0 +1,59 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+body {
+    background-color: #f5e2b8;
+    color: #333;
+}
+
+#bookList { 
+    list-style-type: none;
+    padding: 0;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: wrap;
+}
+
+#bookList li {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 15px;
+    margin: 10px;
+    min-width: 200px;
+}
+
+.toggle-btn {
+    display: block;
+    margin-top: 10px;
+    padding: 8px 12px;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.toggle-btn.btn-unread {
+    background-color: #644213;
+}
+
+.toggle-btn.btn-unread:hover {
+    background-color: #644213;
+}
+
+.toggle-btn.btn-read {
+    background-color: #997650;
+}
+
+.toggle-btn.btn-read:hover {
+    background-color: #997650;
+}
+
+.toggle-btn:active {
+    background-color: #644213;
+}

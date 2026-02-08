@@ -1,20 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
     <title>Library </title>
 </head>
+
 <body>
-    <nav> 
+    <nav>
         <h1>Jay's Awesome Library Management System</h1>
-        <p> Welcome to my amazing library management system. Here you can find 
-            books and manage books in the library with SO much ease. Make sure to 
+        <p> Welcome to my amazing library management system. Here you can find
+            books and manage books in the library with SO much ease. Make sure to
             check out my cashapp: $itsjay734 for donations to keep this afloat.hugs n prayers
         </p>
     </nav>
-    <div id="app">
-    
+    <div id="container">
+        <h2>Library Books</h2>
+        <form id="bookForm">
+            <input type="text" id="title" placeholder="Title" required>
+            <input type="text" id="author" placeholder="Author" required>
+            <input type="number" id="pages" placeholder="Number of Pages" required>
+            <label>
+                <input type="checkbox" id="toggleCheckbox" onclick="toggleFields()"> Read
+            </label>
+
+            <div id="toggleRead" style="display: none;">
+                <label for="toggleRead">Additional Details:</label>
+                <input type="text" id="read" name="details">
+            </div>
+            <button type="submit">Add Book</button>
+        </form>
+        <ul id="bookList">
+            <button id="deleteAll">Delete All Books</button>
+        </ul>
     </div>
+    <script src="./script.js"></script>
 </body>
+
 </html>

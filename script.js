@@ -1,31 +1,61 @@
-let library = ["The Hobbit", "Dune"];
+let library = [
+    { title: "The Great Gatsby", author: "F. Scott Fitzgerald", pages: 2, read: true },
+    { title: "A Pocket Full of Rye", author: "Agatha Christie", pages: 256000, read: false }
+];
 
 // Function to display the books (optional but helpful)
 function renderBooks() {
     const bookList = document.getElementById('bookList');
-    bookList.innerHTML = ''; // Clear the current list
-    library.forEach(book => {
+    bookList.innerHTML = '';
+    library.forEach((book, index) => {
         const li = document.createElement('li');
-        li.textContent = book;
+        const readStatus = book.read ? '✓ Read' : 'Not Read';
+        const buttonText = book.read ? 'Mark as Unread' : 'Mark as Read';
+        const buttonClass = book.read ? 'toggle-btn btn-read' : 'toggle-btn btn-unread';
+        // using tempelate literals to create a list items with book stuff and toggle button
+        li.innerHTML = `${book.title} by ${book.author} (${book.pages} pages) - ${readStatus}
+                        <button class="${buttonClass}" onclick="toggleRead(${index})">${buttonText}</button>`;
         bookList.appendChild(li);
     });
+}
+
+// Function to toggle read status
+function toggleRead(index) {
+    library[index].read = !library[index].read;
+    renderBooks();
 }
 
 // Function to handle the form submission
 function addBook(event) {
     event.preventDefault();
 
-    const bookTitleInput = document.getElementById('bookTitle');
-    const newBookTitle = bookTitleInput.value;
+    const bookTitleInput = document.getElementById('title');
+    const bookAuthorInput = document.getElementById('author');
+    const bookPagesInput = document.getElementById('pages');
+    const toggleCheckbox = document.getElementById('toggleCheckbox');
 
-    // Add the new title to the array
-    library.push(newBookTitle);
+    // Add the new book to the array
+    library.push({
+        title: bookTitleInput.value,
+        author: bookAuthorInput.value,
+        pages: parseInt(bookPagesInput.value),
+        read: toggleCheckbox.checked
+        
+    });
+
+    button.addEventListener('click', function() {
+  // Toggle the 'changed' class on the button element
+  this.classList.toggle('changed');
+});
 
     // Update the display
     renderBooks();
 
     // Clear the input field for the next entry
     bookTitleInput.value = '';
+    bookAuthorInput.value = '';
+    bookYearInput.value = '';
+    toggleCheckbox.checked = false;
     bookTitleInput.focus();
 }
 
