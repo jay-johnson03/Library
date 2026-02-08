@@ -57,3 +57,13 @@ body {
 .toggle-btn:active {
     background-color: #644213;
 }
+
+.remove-btn { 
+    display: flex;
+    margin-top: 10px;
+    padding: 6px 10px;
+    border-radius: 1px;
+    border-color: white;
+    background-color: #c2b39f;
+    color: white;
+}

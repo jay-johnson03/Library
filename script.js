@@ -9,12 +9,36 @@ function renderBooks() {
     bookList.innerHTML = '';
     library.forEach((book, index) => {
         const li = document.createElement('li');
-        const readStatus = book.read ? '✓ Read' : 'Not Read';
-        const buttonText = book.read ? 'Mark as Unread' : 'Mark as Read';
-        const buttonClass = book.read ? 'toggle-btn btn-read' : 'toggle-btn btn-unread';
-        // using tempelate literals to create a list items with book stuff and toggle button
-        li.innerHTML = `${book.title} by ${book.author} (${book.pages} pages) - ${readStatus}
-                        <button class="${buttonClass}" onclick="toggleRead(${index})">${buttonText}</button>`;
+
+        const text = document.createElement('p');
+        text.textContent = `${book.title} by ${book.author} (${book.pages} pages) - ${book.read ? '✓ Read' : 'Not Read'}`;
+
+        // Toggle read button
+        const toggleBtn = document.createElement('button');
+        toggleBtn.textContent = book.read ? 'Mark as Unread' : 'Mark as Read';
+        toggleBtn.className = book.read
+            ? 'toggle-btn btn-read'
+            : 'toggle-btn btn-unread';
+
+        toggleBtn.addEventListener('click', () => {
+            library[index].read = !library[index].read;
+            renderBooks();
+        });
+
+        // Function to remove a book
+        const removeBtn = document.createElement('button');
+        removeBtn.textContent = 'Remove';
+        removeBtn.className = 'remove-btn';
+
+        removeBtn.addEventListener('click', () => {
+            library.splice(index, 1);
+            renderBooks();
+        });
+
+        li.appendChild(text);
+        li.appendChild(toggleBtn);
+        li.appendChild(removeBtn);
+
         bookList.appendChild(li);
     });
 }
@@ -57,6 +81,11 @@ function addBook(event) {
     bookYearInput.value = '';
     toggleCheckbox.checked = false;
     bookTitleInput.focus();
+}
+
+function removeBook(index) {
+    library.splice(index, 1);
+    renderBooks();
 }
 
 // Get the form element and attach the event listener
