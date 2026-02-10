@@ -11,7 +11,7 @@ function renderBooks() {
         const li = document.createElement('li');
 
         const text = document.createElement('p');
-        text.textContent = `${book.title} by ${book.author} (${book.pages} pages) - ${book.read ? '✓ Read' : 'Not Read'}`;
+        text.textContent = `${book.title} by ${book.author} (${book.pages} pages) - ${book.read ? 'Read' : 'Not Read'}`;
 
         // Toggle read button
         const toggleBtn = document.createElement('button');
